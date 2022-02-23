@@ -1,0 +1,9 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /images/{userId}/{document=**} {
+      allow read, create: if request.auth != null;
+      allow delete: if request.auth.uid == userId || request.auth.uid == 'A3m12d38kvMVqQrijpvcEiBLRkx1';
+    }
+  }
+}
